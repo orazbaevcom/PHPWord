@@ -383,4 +383,8 @@ class PhpWord
 
         return $this;
     }
+    public function test()
+    {
+        unset($this->sections[0]);
+    }
 }
