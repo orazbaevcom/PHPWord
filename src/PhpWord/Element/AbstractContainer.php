@@ -163,6 +163,12 @@ abstract class AbstractContainer extends AbstractElement
         return $this->elements;
     }
 
+    public function replaceElement($index, $element)
+    {
+        $this->elements[$index] = $element;
+        return true;
+    }
+
     /**
      * Count elements
      *
