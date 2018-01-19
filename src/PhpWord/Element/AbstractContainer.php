@@ -166,7 +166,21 @@ abstract class AbstractContainer extends AbstractElement
     public function replaceElement($index, $element)
     {
         $this->elements[$index] = $element;
-        return $this->elements[$index];
+        $result['index'] = $index;
+        $result['element'] = $this->elements[$index];
+        $result['parent'] = $this;
+        return $result;
+    }
+
+    public function insertAfter($old, $new)
+    {
+        $new_array = array();
+        $new_array[] = $new;
+        array_splice($this->elements, $old + 1, 0, $new_array);
+        $result['index'] = $old+1;
+        $result['element'] = $this->elements[$old+1];
+        $result['parent'] = $this;
+        return $result;
     }
 
     /**
