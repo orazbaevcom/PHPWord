@@ -166,7 +166,7 @@ abstract class AbstractContainer extends AbstractElement
     public function replaceElement($index, $element)
     {
         $this->elements[$index] = $element;
-        return true;
+        return $this->elements[$index];
     }
 
     /**
