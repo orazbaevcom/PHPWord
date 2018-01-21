@@ -106,12 +106,12 @@ class TemplateProcessor
     // ADDED
     function replaceValue($variable, $value)
     {
-        $offset = strpos($this->tempDocumentMainPart, '${'.$variable.'}');
+        $offset = strpos($this->tempDocumentMainPart, '{{'.$variable.'}}');
         $start = strrpos(substr($this->tempDocumentMainPart, 0, $offset), '<w:p>');
         $end = strpos($this->tempDocumentMainPart, '</w:p>', $offset) + 6;
         $text = $this->getSlice($start, $end);
         $this->tempDocumentMainPart = str_replace($text, $value, $this->tempDocumentMainPart);
-        if (substr_count($this->tempDocumentMainPart, '${'.$variable.'}')) $this->replaceValue($variable, $value);
+        if (substr_count($this->tempDocumentMainPart, '{{'.$variable.'}}')) $this->replaceValue($variable, $value);
     }
 
     /**
