@@ -163,45 +163,6 @@ abstract class AbstractContainer extends AbstractElement
         return $this->elements;
     }
 
-    function replaceText($variable, $value) {
-        $text_class = 'PhpOffice\PhpWord\Element\Text';
-        $table_class = 'PhpOffice\PhpWord\Element\Table';
-        $elements = $this->elements;
-        foreach ($elements as $element) {
-            if ((get_class($element) === $text_class) && (substr_count($element->getText(), $variable))) {
-                $element->setText(str_replace($variable, $value, $element->getText()));
-            } elseif ((get_class($element) !== $text_class) && method_exists($element, 'getElements')) {
-                $element->replaceText($variable, $value);
-            } elseif (get_class($element) === $table_class) {
-                foreach ($element->getRows() as $row) {
-                    foreach ($row->getCells() as $cell) {
-                        $cell->replaceText($variable, $value);
-                    }
-                }
-            }
-        }
-    }
-    
-    public function replaceElement($index, $element)
-    {
-        $this->elements[$index] = $element;
-        $result['index'] = $index;
-        $result['element'] = $this->elements[$index];
-        $result['parent'] = $this;
-        return $result;
-    }
-
-    public function insertAfter($old, $new)
-    {
-        $new_array = array();
-        $new_array[] = $new;
-        array_splice($this->elements, $old + 1, 0, $new_array);
-        $result['index'] = $old+1;
-        $result['element'] = $this->elements[$old+1];
-        $result['parent'] = $this;
-        return $result;
-    }
-
     /**
      * Count elements
      *

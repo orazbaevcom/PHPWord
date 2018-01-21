@@ -103,13 +103,13 @@ class TemplateProcessor
         $this->tempDocumentMainPart = $this->fixBrokenMacros($this->zipClass->getFromName($this->getMainPartName()));
     }
 
+    // ADDED
     function replaceValue($variable, $value)
     {
         $offset = strpos($this->tempDocumentMainPart, '${'.$variable.'}');
         $start = strrpos(substr($this->tempDocumentMainPart, 0, $offset), '<w:p>');
         $end = strpos($this->tempDocumentMainPart, '</w:p>', $offset) + 6;
-        $length = $end - $start;
-        $text = substr($this->tempDocumentMainPart, $start, $length);
+        $text = $this->getSlice($start, $end);
         $this->tempDocumentMainPart = str_replace($text, $value, $this->tempDocumentMainPart);
         if (substr_count($this->tempDocumentMainPart, '${'.$variable.'}')) $this->replaceValue($variable, $value);
     }

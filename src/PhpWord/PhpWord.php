@@ -157,13 +157,6 @@ class PhpWord
         throw new \BadMethodCallException("Method $function is not defined.");
     }
 
-    function replaceText($variable, $value) {
-        $sections = $this->sections;
-        foreach ($sections as $section) {
-            return $section->replaceText($variable, $value);
-        }
-    }
-
     /**
      * Get document properties object
      *

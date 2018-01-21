@@ -107,11 +107,6 @@ class Table extends AbstractElement
         return $this->style;
     }
 
-    public function setStyle($style)
-    {
-        $this->style = $style;
-    }
-
     /**
      * Get table width
      *
